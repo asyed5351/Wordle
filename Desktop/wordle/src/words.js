@@ -1,31 +1,25 @@
-aback
-abase
-abate
-abbey
-abbot
-abhor
-abide
-abled
-abode
-abort
-about
-above
-abuse
-abyss
-acorn
-acrid
-actor
-acute
-adage
-adapt
-adept
-admin
-admit
-adobe
-adopt
-adore
-adorn
-adult
-affix
-afire
-afoot
+
+   
+import wordBank from "./wordstouse.txt";
+
+export const boardDefault = [
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+  ["", "", "", "", ""],
+];
+
+export const generateWordSet = async () => {
+  let wordSet;
+  let todaysWord;
+  await fetch(wordBank)
+    .then((response) => response.text())
+    .then((result) => {
+      const wordArr = result.split("\n");
+      todaysWord = wordArr[Math.floor(Math.random() * wordArr.length)];
+      wordSet = new Set(wordArr);
+    });
+  return { wordSet, todaysWord };
+};
